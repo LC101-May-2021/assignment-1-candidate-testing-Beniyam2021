@@ -1,25 +1,27 @@
+
 const input = require('readline-sync');
 
-let candidateName;
-let question = "";
-let correctAnswer ="";
+//let candidateName;
+let question = "1) Who was the first American woman in space?";
+let candidateAnswer =[];
+let correctPt1 ="Sally Ride";
 // TODO 2: modify your quiz app to ask 5 questions //
 //Hellow World!
 // TODO 1.1a: Define candidateName // 
 //let candidateName;
-let questions = ["1) Who was the first American woman in space?","2) True or false: 5000 meters = 5 kilometers.","3) (5 + 3)/2 * 10 = ?","4) Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2?","5) What is the minimum crew size for the ISS?"]
+let questions = ["1) Who was the first American woman in space?","2) True or false: 5000 meters = 5 kilometers.","3) (5 + 3)/2 * 10 = ?","4) Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2?","5) What is the minimum crew size for the ISS?"];
 
-let correctAnswers = ["Sally Ride","true",40,"Trajectory",3] 
+let correctAnswers = ["Sally Ride","true","40","Trajectory","3"] ;
 
-let candidateAnswer = "";
-let candidateAnswers = [];
+//let candidateAnswer = "";
+let candidateAnswers =[];
 //candidateName=input.question("Write Candidate Name");
 //TODO 1.2a: Define question, correctAnswer, and candidateAnsw
 
 
 function askForName() {
-  candidateName = input.question("enter your name?");
-  console.log("Wel Come,"+ candidateName + "!");
+  let candidateName = input.question("enter your name?");
+  console.log("Candidate Name: "+ candidateName + "!");
   // TODO 1.1b: Ask for candidate's name //
 
 }
@@ -27,29 +29,48 @@ function askForName() {
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
 for(let i=0; i<questions.length; i++){
-  candidateAnswer = input.question(questions[i]);
+  let candidateAnswer = input.question(questions[i]);
   candidateAnswers.push(candidateAnswer);
-
 }
 
 }
 
-function gradeQuiz(candidateAnswers) {
-let numOfCorrect;
+//function gradeQuiz(candidateAnswers) {
+let numOfCorrect = 0
+//let candidateAnswers;
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
 for(let i=0; i<candidateAnswers.length; i++){
+  //candidateAnswers[i].input.question(correctAnswers[i]);
   if (candidateAnswers[i].toLowerCase()===correctAnswers[i].toLowerCase()){
     numOfCorrect++; 
   }
-  console.log(`${questions[i]}`);
-  console.log(`Your answer: ${candidateAnswers[i]}`);
-  console.log(`Correct answer: ${correctAnswers[i]}`);
+  console.log(`${questions[i]}`); 
+  console.log(`Your Answer: ${candidateAnswers[i]}`);
+  console.log(`Correct Answer: ${correctAnswers[i]}`);
+  console.log();
 }
 
-  let grade;
-  
+ // let grade;
 
-  return grade;
+//let n = 5;
+for (let i=0; i<candidateAnswers.length; i++){
+  if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()){
+    numOfCorrect = numOfCorrect +1;
+  }
+}
+
+let grade = (numOfCorrect/candidateAnswers.length) * 100;
+console.log(">>> Overall Grade: ${grade}% (${numOfCorrect} of ${questions.length} responses correct) <<<");
+
+  if(grade>80){ // do pass before fail
+    console.log(">>> Status: PASS <<<")
+  }else{
+    console.log(">>> Status: FAILED <<<")
+    console.log(`>>> Overall Grade: ${grade}% (${numOfCorrect} of ${questions.length} responses correct) <<<`);
+
+  }
+
+  return grade; {
 }
 
 function runProgram() {
@@ -72,4 +93,4 @@ module.exports = {
   candidateAnswers: candidateAnswers,
   gradeQuiz: gradeQuiz,
   runProgram: runProgram
-};
+}
