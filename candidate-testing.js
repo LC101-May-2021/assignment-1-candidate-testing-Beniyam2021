@@ -2,7 +2,7 @@
 const input = require('readline-sync');
 
 let candidateName;
-let question = "1) Who was the first American woman in space?";
+let question = "Who was the first American woman in space? ";
 let candidateAnswer;
 let correctAnswer = "Sally Ride";
 
